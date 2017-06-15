@@ -12,13 +12,18 @@ namespace AppGen
         public App()
         {
             InitializeComponent();
-            AppGenerator appgen = App.Current.Resources["AppGenerator"] as AppGenerator;
-            appgen.GenerateFromConfig();
-            MainPage = appgen.MainPage;
+            
         }
 
         protected override void OnStart()
         {
+
+            AppGenerator appgen = App.Current.Resources["AppGenerator"] as AppGenerator;
+            appgen.GenerateFromConfig();
+            MainPage = new NavigationPage();
+
+            ContentPage cp = new ContentPage();
+            cp.Content = appgen.MainPage;
             // Handle when your app starts
         }
 

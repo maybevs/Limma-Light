@@ -12,27 +12,27 @@ namespace AppGen.Generator
     public class AppGenerator
     {
 
-        public MainPage MainPage { get; set; }
+        public ContentView MainPage { get; set; }
         public AppGenerator()
         {
-            Debug.WriteLine("AppGenerator::ctor starts");
-
-            //Get Json config
-
-            Debug.WriteLine("AppGenerator::ctor Generation Finished");
-
         }
 
-        public void GenerateFromConfig()
+        public ContentView GenerateFromConfig()
         {
             Debug.WriteLine("AppGenerator::GenerateFromConfig Starts");
 
             AppStructure appStructure = AppStructure.GetFromWeb(null);
 
-            MainPage page = new MainPage();
+            ContentView page = new ContentView();
+            Label label = new Label();
+            label.Text = "lalala";
 
             StackLayout root = new StackLayout();
+            root.Children.Add(label);
+            page.Content = root;
+            this.MainPage = page;
 
+            return page;
             Debug.WriteLine("AppGenerator::GenerateFromConfig Generating Children");
 
             foreach (var rootChild in appStructure.Root.Children)
